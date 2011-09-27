@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" manifest="offline.manifest">
+<!---->
+<head>
+<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" name="viewport"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Mobile Inventor</title>
+<style type="text/css">
+	*{  margin:0px; padding:0px;}
+	.splash_screen{ width:auto; height:auto; background:url(https://miwebapp-dev.photoninfotech.com/templates/img/layout/splash.png) no-repeat center;}
+</style>
+<script type="text/javascript" src="https://miwebapp-dev.photoninfotech.com/templates/html5/js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	if(navigator.onLine){
+		//
+		setTimeout(function(){
+		window.location = 'page-422-1-nav.html';
+		},2000);
+	}else{
+		setTimeout(function(){
+		$('.splash_screen').css('background','url("https://miwebapp-dev.photoninfotech.com/templates/img/layout/splash_erro.png") center center');
+		},2000);
+	}
+	
+	var winAppCache = window.applicationCache;
+	
+	
+  
+  function setSplashSize(){					   
+	$('.splash_screen').css({'height':$(window).height()+'px','width':$(window).width()+'px'});					  }; setSplashSize();
+	
+  $(window).bind('resize',function(){
+	setSplashSize();							   
+  });
+	
+    window.addEventListener('online',function(){
+	//winAppCache.update();										  
+	//winAppCache.addEventListener('updateready', onUpdateReady,false);  
+	console.info('online');
+	
+	window.applicationCache.addEventListener('updateready', onUpdateReady, false);  
+	console.info(window.applicationCache.UPDATEREADY);
+
+	if(window.applicationCache.status === window.applicationCache.UPDATEREADY) {  
+  		onUpdateReady();  
+	}  
+	
+	},false);
+	
+  window.addEventListener('offline',function(){
+	console.info('offline');										   
+  },false);	
+  
+  
+	  function onUpdateReady(){
+	  console.info('updateReady');
+	  }
+  
+  
+  
+
+ 	
+	
+});
+</script>
+</head>
+
+<body>
+<div class="splash_screen"></div>
+</body>
+</html>
